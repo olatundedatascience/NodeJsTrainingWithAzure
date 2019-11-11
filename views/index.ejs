@@ -1,0 +1,37 @@
+<% include headers %>
+<h1><%= message %></h1>
+</div>
+
+<form method="POST" name="sizegen">
+    <h5>Create Collection</h5>
+    PinSize:<input type="text" name="size" id="size" /> <input type="button" id="create" value="Get New Pin" class="btn btn-success" />
+    <input type="text" name="dbName" class="form-control" placeholder="collection name" readonly value="<%= pins %>" /> 
+    <input type="submit" value="Create " class="btn btn-primary" />
+</form>
+
+<script>
+    window.onload = function(){
+        let create = document.getElementById("create");
+        let size = document.getElementById("size");
+        let sizegen = document.forms.sizegen.size;
+
+        console.log(sizegen)
+
+        create.onclick = function(){
+           
+           
+           var fet = fetch(`http://localhost:4900/pin/${size.value}`);
+           
+           fet.then(res=>{
+               console.log(er)
+            document.forms.namedItem("dbName").value = res.json();
+           }).catch((er)=>{
+               document.forms.namedItem("dbName").value = er
+           })
+
+        }
+        
+    }
+</script>
+</body>
+</html>
